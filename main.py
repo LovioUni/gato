@@ -17,6 +17,8 @@ def register_user():
 
 def view_users():
     users = User.get_users()
+    for user in users:
+        print(f"ID: {user.id} | Nombre: {user.name} | Cuenta: {user.account} | CURP: {user.curp}")
 
 def login():
     account = input("Cuenta: ")
