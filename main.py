@@ -1,5 +1,6 @@
 from entities.user import User
 from getpass import getpass
+from security.crypto import generate_key
 
 def register_user():
     name = input("Nombre: ")
@@ -33,6 +34,7 @@ def login():
     #return user and user.password == password   <--- esto es lo mismo que lo de arriba
 
 if __name__ == "__main__":
+    generate_key()
     print("Inicio de sesion")
     if login():
         print("Seleccione una opción del menú")

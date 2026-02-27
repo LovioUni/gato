@@ -1,11 +1,21 @@
 from cryptography.fernet import Fernet
+import os
 
-key = b'mmXqnZBDVQeISgB83eUuUsjfljSRw8PkSAv80lMBdXA='
+def generate_key():
+    if not os.path.exists("gatokey.txt"):
+        key = Fernet.generate_key()
+        with open("gatokey.txt", "wb") as file:
+            file.write(key)
+        print("Key generada en gatokey.txt")
 
-fernet = Fernet(key)
-
-def encrypt(value):
+def encrypt(value) -> str:
+    with open("gatokey.txt", "rb") as file:
+        key = file.read()
+    fernet = Fernet(key)
     return fernet.encrypt(value.encode()).decode()
 
-def decrypt(value):
+def decrypt(value) -> str:
+    with open("gatokey.txt", "rb") as file:
+        key = file.read()
+    fernet = Fernet(key)
     return fernet.decrypt(value.encode()).decode()
