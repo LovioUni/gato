@@ -87,6 +87,3 @@ class User:
                 curp = decrypt(row["curp"]),
                 password=decrypt(row["password"])
             )
-
-
-
